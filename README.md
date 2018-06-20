@@ -6,7 +6,7 @@
 
 ## Installation Instructions
 
-1. Install [python] 2.7.10 or above, [git], [virtualenv], in your computer, if you don't have it already.
+1. Install [python] 3.4 or above, [git], [virtualenv], in your computer, if you don't have it already.
 
 2. Get the source code on your machine via git.
 
