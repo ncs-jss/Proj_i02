@@ -5,6 +5,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
+
 def loginview(request):
-	
-	return render(request,"accounts/login.html")
+
+        # if request.method == GET:
+    return render(request, "accounts/login.html")
+
+    # else request.method == POST:
