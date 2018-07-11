@@ -1,0 +1,33 @@
+#box
+{
+	height: 500px;
+	width: 320px;
+	margin-top: 100px;
+	border-radius: 3px;
+	padding: 4px;
+}
+#upper-box
+{
+	height: 200px;
+	width: 320px;
+}
+#lower-box
+{
+	height: 300px;
+	width: 320px;
+}
+.row
+{
+	margin: 0px;
+}
+.input-field
+{
+	margin-top: 0px;
+}
+.row .col
+{
+	padding-left: 0.5rem;
+}
+img {
+    margin-top: 15px;
+}

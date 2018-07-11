@@ -1,0 +1,19 @@
+language: python
+sudo: false
+python:
+  - "3.5"
+# command to install dependencies
+install:
+
+- pip install --upgrade pip
+- pip install -r requirements.txt
+- pip install coveralls
+
+# script: coverage
+script:
+- flake8 ./
+
+notifications:
+  email:
+    on_success: change  # [always|never|change]
+    on_failure: always  # [always|never|change]
