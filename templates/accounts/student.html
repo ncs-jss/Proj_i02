@@ -1,56 +1,358 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
-    <!--Import Google Icon Font-->
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	    <!--Import materialize.css-->
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	    <link href="style.css" rel="stylesheet"/>
-	    <script type="text/javascript" src="script.js"></script>
-    	<!--Let browser know website is optimized for mobile-->
+	    <link href="{% static "/css/studentstyle.css"%}" rel="stylesheet"/>
+	    <script type="text/javascript" src="{% static "/script/studentscript.css"%}"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    	<title>Login Page</title>
+    	<title>Student</title>
     </head>
 
     <body>
 
-	<nav>
-    <div class="nav-wrapper cyan z-depth-1">
-    	
-    	<a href="#" class="brand-logo"><h5 style="margin-top: 20px; padding-left: 10px;">Student Dashboard</h5></a>
-		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
-		<div class="header-search-wrapper hide-on-med-and-down ">
-			<form >
-		        <div class="input-field cyan lighten-2" style="border-radius: 3px; margin-left: 40px; ">
-		        	<i class="material-icons" style="position: absolute; margin-top: -10px; margin-left: 20px;">search</i></label>
-		        	<input class="header-search-input z-depth-2" name="search" placeholder="Search" type="search" required style="margin-top: -65px; border-radius: 3px; ">
-		        	<i class="material-icons" style="position: absolute; margin-top: -10px;">close</i>
-		        </div>
-	        </form>
-    	</div>
-      <ul class="right hide-on-med-and-down" style="margin-top: 0px;">
-        <li><a href="#">Issue</a></li>
-        <li><a href="#">Due</a></li>
-        <li><a href="#">Settings</a></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">Help</a></li>
-      </ul>
+<div class="wrapper">
+    <div class="">
+        <!-- Dropdown Structure -->
+        <nav class="grey lighten-4" role="navigation">
+            <div class="nav-wrapper container">
+                <a href="#!" class="brand-logo black-text">Inventory Order</a>
+            </div>
+        </nav>
     </div>
-    </nav>
-    <center>
-	<div class="container" style="background-color: #222222; height: 1000px;">
-	   
-	</div>
-	</center>
 
-        <!--Import jQuery before materialize.js-->
-    	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    	<script> $(".button-collapse").sideNav(); </script>
+
+	<ul id="slide-out" class="side-nav fixed">
+		<div class="tab3">
+		    <li><button class="tablinks3" onclick="openAction(event, 'profile')" id="defaultOpen3"><i class="material-icons">person_outline</i>Profile</button></li>
+		    <hr style="">
+		    <li><button class="tablinks3" onclick="openAction(event, 'inventory')"><i class="material-icons">folder</i>Inventory</button></li>
+		    <li><button class="tablinks3" onclick="openAction(event, 'issueditems')"><i class="material-icons">folder</i>Issued Items</button></li>
+		    <li><button class="tablinks3" onclick="openAction(event, 'issuehistory')"><i class="material-icons">folder</i>Issue History</button></li>
+		</div>
+	</ul>
+
+	<div id="profile" class="tabcontent3">
+		<!--
+
+		-->
+	</div>
+
+	<div id="inventory" class="tabcontent3">
+		<div id="lbox">
+				<form >
+					<div class="input-field">
+					  	<i class="material-icons">search</i>
+					      	<input id="searchbar" class="header-search-input z-depth-2" name="search" placeholder="Search" type="search" required >
+					        	<i class="material-icons" style="margin-top: 3%; margin-right: -10px;">close</i>
+					</div>
+				</form>
+				<div class="tab2">
+				  <button class="tablinks" onclick="openLab(event, 'chemistry')" id="defaultOpen">Chemistry Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'eyantra')">E-Yantra Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'electrical')">Electrical Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'mechanics')">Mechanics Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'networks')">Networks Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'physics')">Physics Lab</button>
+				  <button class="tablinks" onclick="openLab(event, 'simulation')">Simulation Lab</button>
+				</div>
+		</div>
+
+		<div id="rbox" class="grey lighten-2">
+			<div id="chemistry" class="tabcontent">
+				<div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="chemistrylab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM1_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM1_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM1_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+				    </form>
+				</div>
+			</div>
+			<div id="eyantra" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="eyantralab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM2_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM2_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM2_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+			<div id="electrical" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="electricallab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM3_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM3_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM3_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+			<div id="mechanics" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="mechanicslab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM4_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM4_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM4_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+			<div id="networks" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="networkslab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM5_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM5_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM5_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+			<div id="physics" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="physicslab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM6_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM6_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM6_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+			<div id="simulation" class="tabcontent">
+			  <div id="inner">
+					<h4>Inventory Order Information</h4>
+					<form id="simulationlab">
+					<table>
+					        <thead>
+					          <tr>
+					              <th>Item</th>
+					              <th>Item Code</th>
+					              <th>Quantity</th>
+					          </tr>
+					        </thead>
+
+					        <tbody>
+					          <tr>
+					            <td>Item One</td>
+					            <td>ITEM7_C3PO</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Two</td>
+					            <td>ITEM7_R2D2</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+					          <tr>
+					            <td>Item Three</td>
+					            <td>ITEM7_DNOT</td>
+					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+					          </tr>
+
+					        </tbody>
+					</table>
+					</form>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<div id="issueditems" class="tabcontent3">
+		<!--
+
+		-->
+	</div>
+	<div id="issuehistory" class="tabcontent3">
+		<!--
+
+		-->
+	</div>
+</div>
+<script>
+	document.getElementById("defaultOpen3").click();
+	function openLab(evt, LabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(LabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+	
+
+	function openAction(evt, actName) {
+	    var j, tabcontent3, tablinks3;
+	    tabcontent3 = document.getElementsByClassName("tabcontent3");
+	    for (j = 0; j < tabcontent3.length; j++) {
+	        tabcontent3[j].style.display = "none";
+	    }
+	    tablinks3 = document.getElementsByClassName("tablinks3");
+	    for (j = 0; j < tablinks3.length; j++) {
+	        tablinks3[j].className = tablinks3[j].className.replace(" active", "");
+	    }
+	    document.getElementById(actName).style.display = "block";
+	    evt.currentTarget.className += " active";
+	}
+	
+	</script>
+    	
     </body>
 </html>
