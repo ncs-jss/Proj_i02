@@ -18,6 +18,9 @@ from django.contrib import admin
 # from . import accounts
 
 urlpatterns = [
-	url(r'^login/', include("accounts.urls")),
+    url(r'^login/', include("accounts.urls")),
     url(r'^admin/', admin.site.urls),
 ]
+
+# Django Spaghetti URLs
+urlpatterns += url(r'^plate/', include('django_spaghetti.urls')),

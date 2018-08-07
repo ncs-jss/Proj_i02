@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_spaghetti',
     'accounts',
 ]
 
@@ -137,3 +138,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     
 ]
+
+# Django Spaghetti settings
+
+SPAGHETTI_SAUCE = {
+  'apps':['accounts','inventory'],
+  'show_fields':False,
+  'exclude':{'auth':['user']},
+  'show_proxy':True,
+}
