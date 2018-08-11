@@ -18,13 +18,14 @@
          </div>
       <div id="lower-box">
         <div class="row" style="height: 76px;">
-          <form class="col s12" style="padding-left: 40px; padding-right: 40px; " action="#">
+          <form class="col s12" style="padding-left: 40px; padding-right: 40px; " action="." method="POST">
+          {% csrf_token %}
             <div class="row">
               <div class="col s2 left">
                 <i class="material-icons right" style="font-size: 30px;">person_outline</i>
               </div>
               <div class="input-field col s10 right">
-                <input id="user_name" type="text" class="validate">
+                <input id="user_name" type="text" name="username" class="validate">
                 <label class="active" for="email">Username</label>
               </div>
             </div>
@@ -33,7 +34,7 @@
                 <i class="material-icons right" style="font-size: 30px;">lock_outline</i>
               </div>
               <div class="input-field col s10 right">
-                <input id="password" type="password" class="validate">
+                <input id="password" type="password" name="password" class="validate">
                 <label class="active" for="email">Password</label>
               </div>
             </div>
