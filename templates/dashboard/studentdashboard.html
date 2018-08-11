@@ -1,55 +1,35 @@
-{% load static %}
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
     <head>
-	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	    <link href="{% static "/css/studentstyle.css"%}" rel="stylesheet"/>
+    	<link href="{% static 'css/studentstyle.css' %}" rel="stylesheet"/>
 	    <script type="text/javascript" src="{% static "/script/studentscript.css"%}"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    	<title>Student</title>
+    	<title>{% block title %} Student {% endblock %}</title>
     </head>
-
     <body>
-
-<div class="wrapper">
-    <div class="">
-        <!-- Dropdown Structure -->
-        <nav class="grey lighten-4" role="navigation">
-            <div class="nav-wrapper container">
-                <a href="#!" class="brand-logo black-text">Inventory Order</a>
-            </div>
-        </nav>
-    </div>
-
-
-	<ul id="slide-out" class="side-nav fixed">
-		<div class="tab3">
-		    <li><button class="tablinks3" onclick="openAction(event, 'profile')" id="defaultOpen3"><i class="material-icons">person_outline</i>Profile</button></li>
-		    <hr style="">
-		    <li><button class="tablinks3" onclick="openAction(event, 'inventory')"><i class="material-icons">folder</i>Inventory</button></li>
-		    <li><button class="tablinks3" onclick="openAction(event, 'issueditems')"><i class="material-icons">folder</i>Issued Items</button></li>
-		    <li><button class="tablinks3" onclick="openAction(event, 'issuehistory')"><i class="material-icons">folder</i>Issue History</button></li>
+    	{% block navbar %}
+		<div class="wrapper">
+		    <div class="">
+		        <!-- Dropdown Structure -->
+		        <nav class="grey lighten-4" role="navigation">
+		            <div class="nav-wrapper container">
+		                <a href="#!" class="brand-logo black-text">Inventory Order</a>
+		            </div>
+		        </nav>
+		    </div>
 		</div>
-	</ul>
-
-	<div id="profile" class="tabcontent3">
-		<!--
-
-		-->
-	</div>
-
-	<div id="inventory" class="tabcontent3">
+		{% endblock %}
+		
+		{% block pages %}
 		<div id="lbox">
-				<form >
-					<div class="input-field">
-					  	<i class="material-icons">search</i>
-					      	<input id="searchbar" class="header-search-input z-depth-2" name="search" placeholder="Search" type="search" required >
-					        	<i class="material-icons" style="margin-top: 3%; margin-right: -10px;">close</i>
-					</div>
-				</form>
+
+			<form >
+				<div class="input-field">
+				  	<i class="material-icons">search</i>
+				      	<input id="searchbar" class="header-search-input z-depth-2" name="search" placeholder="Search" type="search" required >
+				        	<i class="material-icons" style="margin-top: 3%; margin-right: -10px;">close</i>
+				</div>
+			</form>
 				<div class="tab2">
 				  <button class="tablinks" onclick="openLab(event, 'chemistry')" id="defaultOpen">Chemistry Lab</button>
 				  <button class="tablinks" onclick="openLab(event, 'eyantra')">E-Yantra Lab</button>
@@ -61,7 +41,11 @@
 				</div>
 		</div>
 
+
+
+
 		<div id="rbox" class="grey lighten-2">
+
 			<div id="chemistry" class="tabcontent">
 				<div id="inner">
 					<h4>Inventory Order Information</h4>
@@ -308,51 +292,6 @@
 				</div>
 			</div>	
 		</div>
-	</div>
-	<div id="issueditems" class="tabcontent3">
-		<!--
-
-		-->
-	</div>
-	<div id="issuehistory" class="tabcontent3">
-		<!--
-
-		-->
-	</div>
-</div>
-<script>
-	document.getElementById("defaultOpen3").click();
-	function openLab(evt, LabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(LabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-    document.getElementById("defaultOpen").click();
-	
-
-	function openAction(evt, actName) {
-	    var j, tabcontent3, tablinks3;
-	    tabcontent3 = document.getElementsByClassName("tabcontent3");
-	    for (j = 0; j < tabcontent3.length; j++) {
-	        tabcontent3[j].style.display = "none";
-	    }
-	    tablinks3 = document.getElementsByClassName("tablinks3");
-	    for (j = 0; j < tablinks3.length; j++) {
-	        tablinks3[j].className = tablinks3[j].className.replace(" active", "");
-	    }
-	    document.getElementById(actName).style.display = "block";
-	    evt.currentTarget.className += " active";
-	}
-	
-	</script>
-    	
+		{% endblock %}
     </body>
 </html>

@@ -9,6 +9,6 @@ from django.shortcuts import render
 def loginview(request):
 
         # if request.method == GET:
-    return render(request, "accounts/login.html")
+    return render(request, "accounts/studentprofile.html")
 
     # else request.method == POST:

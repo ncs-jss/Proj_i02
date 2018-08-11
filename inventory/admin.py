@@ -50,4 +50,4 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.inventory)
-admin.site.register(models.issue_application)
+# admin.site.register(models.issue_application)
