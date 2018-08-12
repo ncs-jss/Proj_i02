@@ -16,8 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from . import settings
+# from . import accounts
+
 
 urlpatterns = [
-	url(r'^login/', include("accounts.urls")),
+    url(r'^login/', include("accounts.urls")),
     url(r'^admin/', admin.site.urls),
 ]
+
+# For development environment
+if settings.DEBUG:
+
+    # Django Spaghetti URLs
+    urlpatterns += url(r'^plate/', include('django_spaghetti.urls')),

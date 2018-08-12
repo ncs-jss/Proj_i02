@@ -24,7 +24,6 @@ SECRET_KEY = '=e#p06m_k24$bdbtzm$!h9qux!tmth&(che1lthlhyz4cn1w^o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_spaghetti',
     'accounts',
     'inventory',
 ]
@@ -137,4 +137,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 
+
 ]
+
+# Django Spaghetti settings
+
+SPAGHETTI_SAUCE = {
+    'apps': ['accounts', 'inventory'],
+    'show_fields': False,
+    'exclude': {'auth': ['user']},
+    'show_proxy': True,
+}
