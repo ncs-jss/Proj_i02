@@ -1,0 +1,74 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+
+    	<link href="studentprofilestyle.css" rel="stylesheet"/>
+	    
+    	<link href="{% static '/css/studentprofilestyle.css'%}" rel="stylesheet"/>
+	    <script type="text/javascript" src="{% static '/script/studentprofilescript.css' %}"></script>
+    	<
+    	title>{% block title %} Student Profile {% endblock %}</title>
+    </head>
+
+    <body>
+    	{% block navbar %}
+    	<div class="wrapper">
+		    <div class="">
+		        <!-- Dropdown Structure -->
+		        <nav class="grey lighten-4" role="navigation">
+		            <div class="nav-wrapper container">
+		                <a href="#!" class="brand-logo black-text">Student Profile</a>
+		            </div>
+		        </nav>
+		    </div>
+		</div>
+		{% endblock %}
+
+		{% block pages %}
+		<div id="box">
+			<div class="row">
+			    <form class="col s12" action="." method="POST">
+			    {% csrf_token %}
+			      <div class="row">
+			        
+			        <div class="input-field col s12">
+			          <input id="username" placeholder="Enter your Username" type="text" class="validate" name="username">
+			          <label for="username">User Name</label>
+			        </div>
+
+			        <div class="input-field col s12">
+			          <input id="group" placeholder="Enter your Group" type="text" class="validate" name="group">
+			          <label for="group">Group</label>
+			        </div>
+			      
+			        <div class="input-field col s12">
+			          <input id="branch" placeholder="Enter your Branch" type="text" class="validate" name="branch">
+			          <label for="branch">Branch</label>
+			        </div>
+
+			        <div class="input-field col s12">
+			          <input id="email" type="email" class="validate" name="email">
+			          <label for="email">Email</label>
+			        </div>
+
+			        <div class="input-field col s12">
+			          <input id="phone" placeholder="Enter your mobile number" type="text" class="validate" name="phone">
+			          <label for="phone">Phone No.</label>
+			        </div>
+
+
+			     	<div class="input-field col s10	">
+			                <button class="btn blue waves-effect waves-light" type="submit" name="action">Submit
+			                <i class="material-icons right">send</i>
+			                </button>
+			        </div>
+			       </div>
+			      
+			    </form>
+			</div>
+		</div>
+		{% endblock %}
+    </body>
+</html>

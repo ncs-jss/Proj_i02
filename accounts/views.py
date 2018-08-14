@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import *
 import requests
@@ -18,6 +18,7 @@ class Loginview(View):
         return render(request, "accounts/login.html")
 
     def post(self, request):
+        print("enter login post")
         username = request.POST['username']
         password = request.POST['password']
         data = {
@@ -37,11 +38,11 @@ class Loginview(View):
             request.session["id"] = data.get('username')
             if StudentProfile.objects.filter(username=data.get('username')).count() == 1:
                 print("already there")
-                return redirect('######')
+                return redirect('/dashboard')
 
             else:
                 print("New student")
-                return redirect('Studentprofileupdate')
+                return redirect('/studentprofile')
 
             return render(request, "accounts/login.html")
         if data.get('group') == "faculty":
@@ -49,26 +50,37 @@ class Loginview(View):
             request.session["id"] = data.get('username')
             if FacultyProfile.objects.filter(username=data.get('username')).count() == 1:
                 print("already there")
-                return redirect('######')
+                return redirect('/dashboard')
 
             else:
                 print("New student")
-                return redirect('Facultyprofileupdate')
+                return redirect('/facultyprofile')
             print("Faculty login")
         if data.get('group') == "hod":
-        	request.session["id"] = data.get('username')
+            request.session["id"] = data.get('username')
             # render (account/studentprofile.html)
             print("HOD login")
 
 
-def Studentprofileupdate():
-    username = request.POST['username']
-    password = request.POST['password']
+class Studentprofileupdate(View):
+
+    def get(self, request):
+        return render(request, "accounts/studentprofile.html")
+
+    def post(self, request):
+        print("enter student post")
+        username = request.POST.get('username')
+        branch = request.POST.get('branch')
+        email = request.POST.get('email')
+        Phoneno = request.POST.get('phoneno')
+        StudentProfile.objects.create(username=request.session[
+                                      'id'], branch=branch, email=email, phoneno=phoneno)
 
 
-def Facultyprofileupdate():
-    username = request.POST['username']
-    password = request.POST['password']
+class Facultyprofileupdate(View):
+
+    def get(self, request):
+        return render(request, "accounts/facultyprofile.html")
 
 
 def logoutview():
@@ -77,3 +89,7 @@ def logoutview():
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
+
+def Dashboard(request):
+    return render(request, "inventory/studentdashboard.html")

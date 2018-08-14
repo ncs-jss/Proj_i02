@@ -1,0 +1,17 @@
+nav
+{
+  height: 7vh;
+  line-height: 7vh;
+}
+a
+{
+  color: black;
+}
+hr { 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-width: 0.5px;
+    width: 150px;
+}
