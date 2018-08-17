@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.core import urlresolvers
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import force_text
+from import_export.admin import ImportExportModelAdmin
+from import_export import resources
 from . import models
 
 
@@ -49,5 +51,17 @@ class LocationAdmin(admin.ModelAdmin):
     inlines = [CountDivisionInline]
 
 
-admin.site.register(models.inventory)
+class InventoryResources(resources.ModelResource):
+
+    class Meta:
+        model = models.inventory
+
+
+class InventoryTotal(ImportExportModelAdmin):
+    list_display = ('__str__', 'item', 'item_total_count', 'item_department')
+    search_fields = ('item',)
+    resource_class = InventoryResources
+
+
+admin.site.register(models.inventory, InventoryTotal)
 # admin.site.register(models.issue_application)
