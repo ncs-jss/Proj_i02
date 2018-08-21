@@ -28,7 +28,8 @@
 		{% block pages %}
 		<div id="box">
 			<div class="row">
-			    <form class="col s12">
+			    <form class="col s12" action="/facultyprofile" method="POST">
+			    {% csrf_token %}
 			      <div class="row">
 			        <div class="input-field col s12">
 			          <input id="username" placeholder="Enter your Username" type="text" class="validate">

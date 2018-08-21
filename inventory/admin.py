@@ -50,4 +50,5 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.inventory)
+# admin.site.register(models.count_division)
 # admin.site.register(models.issue_application)

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import *
+from .models import StudentProfile, FacultyProfile
 import requests
-from django.shortcuts import redirect
+from django.http import HttpResponse
+# from inventory.decorators import student_only, faculty_only
 
 
 # Create your views here.
@@ -36,7 +36,10 @@ class Loginview(View):
         if data.get('group') == "student":
             print("student login")
             request.session["id"] = data.get('username')
-            if StudentProfile.objects.filter(username=data.get('username')).count() == 1:
+            request.session["group"] = data.get('group')
+
+            if StudentProfile.objects.filter(
+                    username=data.get('username')).count() == 1:
                 print("already there")
                 return redirect('/dashboard')
 
@@ -45,51 +48,68 @@ class Loginview(View):
                 return redirect('/studentprofile')
 
             return render(request, "accounts/login.html")
-        if data.get('group') == "faculty":
-            print("student login")
+        if data.get('group') == "faculty" or data.get('group') == "hod":
+            print("Faculty login")
             request.session["id"] = data.get('username')
-            if FacultyProfile.objects.filter(username=data.get('username')).count() == 1:
+            request.session["group"] = data.get('group')
+
+            if FacultyProfile.objects.filter(
+                    username=data.get('username')).count() == 1:
                 print("already there")
-                return redirect('/dashboard')
+                return redirect('/facultydashboard')
 
             else:
-                print("New student")
+                print('New faculty')
+                print("Faculty")
                 return redirect('/facultyprofile')
-            print("Faculty login")
-        if data.get('group') == "hod":
-            request.session["id"] = data.get('username')
-            # render (account/studentprofile.html)
-            print("HOD login")
+            # print("Faculty login")
+        # if data.get('group') == "hod":
+        #     request.session["id"] = data.get('username')
+        #     request.session["group"] = data.get('group')
+
+        #     # render (account/studentprofile.html)
+        #     print("HOD login")
 
 
 class Studentprofileupdate(View):
+    # @student_only
 
     def get(self, request):
         return render(request, "accounts/studentprofile.html")
 
     def post(self, request):
         print("enter student post")
-        username = request.POST.get('username')
+        # username = request.POST.get('username')
         branch = request.POST.get('branch')
         email = request.POST.get('email')
-        Phoneno = request.POST.get('phoneno')
-        StudentProfile.objects.create(username=request.session[
-                                      'id'], branch=branch, email=email, phoneno=phoneno)
+        Phone = request.POST.get('phone')
+        StudentProfile.objects.create(
+            username=request.session['id'],
+            group=branch, Branch=branch,
+            email=email, phone=Phone)
+        return HttpResponse("succesful")
 
 
 class Facultyprofileupdate(View):
+    # @faculty_only
 
     def get(self, request):
         return render(request, "accounts/facultyprofile.html")
 
+    def post(self, request):
+        print("enter student post")
+        # username = request.POST.get('username')
+        # branch = request.POST.get('branch')
+        email = request.POST.get('email')
+        Phone = request.POST.get('phone')
+        FacultyProfile.objects.create(username=request.session[
+                                      'id'], email=email, phone=Phone)
+        return HttpResponse("succesful")
 
-def logoutview():
+
+def logoutview(request):
     try:
         del request.session['id']
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
-
-
-def Dashboard(request):
-    return render(request, "inventory/studentdashboard.html")

@@ -17,7 +17,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='count_division',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('item_count', models.IntegerField(default=0)),
             ],
             options={
@@ -27,7 +31,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='departments',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('department', models.CharField(max_length=10)),
             ],
             options={
@@ -37,18 +45,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='inventory',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('item', models.CharField(max_length=50)),
                 ('item_total_count', models.IntegerField(default=0)),
-                ('item_department', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inventory.departments')),
+                ('item_department', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='inventory.departments')),
             ],
         ),
         migrations.CreateModel(
             name='storage_locations',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
                 ('location', models.CharField(max_length=30)),
-                ('department', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inventory.departments')),
+                ('department', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='inventory.departments')),
             ],
             options={
                 'verbose_name': 'Locations',
@@ -57,11 +77,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='count_division',
             name='item_name',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inventory.inventory'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='inventory.inventory'),
         ),
         migrations.AddField(
             model_name='count_division',
             name='location',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='inventory.storage_locations'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='inventory.storage_locations'),
         ),
     ]

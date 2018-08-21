@@ -1,35 +1,39 @@
 from django.shortcuts import render
-from .models import *
-from accounts.models import *
-from .models import *
+from .models import departments, inventory
+from accounts.models import StudentProfile
+from .decorators import student_only, faculty_only
+# import json
 
 # Create your views here.
 
 
-class StudentDashboard():
+# def itemissue(request):
 
-    def get(self, request):
-        profile = Studentprofile.objects.get(
-            id=request.session['id'])
+
+@student_only
+def StudentDashboard(request):
+    # show items
+    if request.method == 'GET':
+        print(request.session['id'])
+        print(request.session['group'])
+        Branch = departments.objects.filter(
+            department=(StudentProfile.objects.get(
+                username=request.session['id'])).Branch)
+        print(Branch[0].id)
         items = inventory.objects.filter(
-            item_department__iexact=profile.department)
-        return render(request, "inventry/studentdashboard.html")
-
-    def post(self, request):
-        # pass
-
-
-class FacultyDashboard():
-
-    def get(self, request):
-        profile = Facultyprofile.objects.get(id=request.session['id'])
-        return render(request, "inventry/Facultydashboard.html")
-
-    def post(self, request):
-        pass
+            item_department=Branch[0].id)
+        print(items)
+        return render(request, "inventory/studentdashboard.html")
+    # Issue items
+    # if request.method == 'POST':
+    #     json_data = json.loads(request.data)
+    #     for item in json_data:
 
 
-# class itemissue():
-
-
-# class issuepermission():
+@faculty_only
+def FacultyDashboard(request):
+    if request.method == 'GET':
+        print(request.session['id'])
+        print(request.session['group'])
+        # profile = Facultyprofile.objects.get(id=request.session['id'])
+        return render(request, "inventory/facultydashboard.html")

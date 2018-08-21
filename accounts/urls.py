@@ -8,7 +8,5 @@ urlpatterns = [
         name="studentprofile"),
     url(r'^facultyprofile$', views.Facultyprofileupdate.as_view(),
         name="facultyprofile"),
-    url(r'^dashboard$', views.Dashboard,
-        name="dashboard"),
     url(r'^logout/', views.logoutview, name="logout"),
 ]
