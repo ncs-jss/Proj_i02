@@ -14,15 +14,11 @@ from .decorators import student_only, faculty_only
 def StudentDashboard(request):
     # show items
     if request.method == 'GET':
-        print(request.session['id'])
-        print(request.session['group'])
         Branch = departments.objects.filter(
             department=(StudentProfile.objects.get(
                 username=request.session['id'])).Branch)
-        print(Branch[0].id)
         items = inventory.objects.filter(
             item_department=Branch[0].id)
-        print(items)
         return render(request, "inventory/studentdashboard.html")
     # Issue items
     # if request.method == 'POST':
@@ -33,7 +29,5 @@ def StudentDashboard(request):
 @faculty_only
 def FacultyDashboard(request):
     if request.method == 'GET':
-        print(request.session['id'])
-        print(request.session['group'])
         # profile = Facultyprofile.objects.get(id=request.session['id'])
         return render(request, "inventory/facultydashboard.html")

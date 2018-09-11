@@ -18,7 +18,6 @@ class Loginview(View):
         return render(request, "accounts/login.html")
 
     def post(self, request):
-        print("enter login post")
         username = request.POST['username']
         password = request.POST['password']
         data = {
@@ -27,40 +26,31 @@ class Loginview(View):
         }
         response = requests.post(
             'http://yashasingh.tech:8085/api/profiles/login/', data=data)
-        print(response.json())
         data = response.json()
         # print(data['non_field_errors'][0])
         if data.get('non_field_errors') != None:
-            print("Incorrect credentials")
             return render(request, "accounts/login.html")
         if data.get('group') == "student":
-            print("student login")
             request.session["id"] = data.get('username')
             request.session["group"] = data.get('group')
 
             if StudentProfile.objects.filter(
                     username=data.get('username')).count() == 1:
-                print("already there")
                 return redirect('/dashboard')
 
             else:
-                print("New student")
                 return redirect('/studentprofile')
 
             return render(request, "accounts/login.html")
         if data.get('group') == "faculty" or data.get('group') == "hod":
-            print("Faculty login")
             request.session["id"] = data.get('username')
             request.session["group"] = data.get('group')
 
             if FacultyProfile.objects.filter(
                     username=data.get('username')).count() == 1:
-                print("already there")
                 return redirect('/facultydashboard')
 
             else:
-                print('New faculty')
-                print("Faculty")
                 return redirect('/facultyprofile')
             # print("Faculty login")
         # if data.get('group') == "hod":
@@ -78,7 +68,6 @@ class Studentprofileupdate(View):
         return render(request, "accounts/studentprofile.html")
 
     def post(self, request):
-        print("enter student post")
         # username = request.POST.get('username')
         branch = request.POST.get('branch')
         email = request.POST.get('email')
@@ -97,7 +86,6 @@ class Facultyprofileupdate(View):
         return render(request, "accounts/facultyprofile.html")
 
     def post(self, request):
-        print("enter student post")
         # username = request.POST.get('username')
         # branch = request.POST.get('branch')
         email = request.POST.get('email')
