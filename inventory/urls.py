@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^dashboard$', views.StudentDashboard,
+    url(r'^studentdashboard$', views.StudentDashboard,
         name="dashboard"),
     url(r'^facultydashboard$', views.FacultyDashboard,
         name="facultydashboard"),

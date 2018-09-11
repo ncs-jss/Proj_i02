@@ -35,7 +35,7 @@ class Loginview(View):
 
             if StudentProfile.objects.filter(
                     username=data.get('username')).count() == 1:
-                return redirect('/dashboard')
+                return redirect('/dashboard/studentdashboard')
 
             else:
                 return redirect('/studentprofile')
@@ -47,7 +47,7 @@ class Loginview(View):
 
             if FacultyProfile.objects.filter(
                     username=data.get('username')).count() == 1:
-                return redirect('/facultydashboard')
+                return redirect('dashboard/facultydashboard')
 
             else:
                 return redirect('/facultyprofile')
@@ -65,8 +65,8 @@ class Studentprofileupdate(View):
 
     def get(self, request):
         if StudentProfile.objects.filter(
-                username=data.get('username')).count() == 1:
-            return redirect('/dashboard')
+                username=request.session['id']).count() == 1:
+            return redirect('/dashboard/studentdashboard')
         return render(request, "accounts/studentprofile.html")
 
     def post(self, request):
@@ -86,7 +86,7 @@ class Facultyprofileupdate(View):
 
     def get(self, request):
         if FacultyProfile.objects.filter(
-                username=request.session"id").count() == 1:
+                username=request.session[id]).count() == 1:
             return redirect('/facultydashboard')
         return render(request, "accounts/facultyprofile.html")
 
