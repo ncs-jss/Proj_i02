@@ -27,7 +27,6 @@ class Loginview(View):
         response = requests.post(
             'http://yashasingh.tech:8085/api/profiles/login/', data=data)
         data = response.json()
-        # print(data['non_field_errors'][0])
         if data.get('non_field_errors') != None:
             return render(request, "accounts/login.html")
         if data.get('group') == "student":
@@ -65,6 +64,9 @@ class Studentprofileupdate(View):
     # @student_only
 
     def get(self, request):
+        if StudentProfile.objects.filter(
+                username=data.get('username')).count() == 1:
+            return redirect('/dashboard')
         return render(request, "accounts/studentprofile.html")
 
     def post(self, request):
@@ -83,6 +85,9 @@ class Facultyprofileupdate(View):
     # @faculty_only
 
     def get(self, request):
+        if FacultyProfile.objects.filter(
+                username=request.session"id").count() == 1:
+            return redirect('/facultydashboard')
         return render(request, "accounts/facultyprofile.html")
 
     def post(self, request):
