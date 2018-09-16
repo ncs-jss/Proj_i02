@@ -27,7 +27,7 @@ class Loginview(View):
         response = requests.post(
             'http://yashasingh.tech:8085/api/profiles/login/', data=data)
         data = response.json()
-        if data.get('non_field_errors') != None:
+        if data.get('non_field_errors') is not None:
             return render(request, "accounts/login.html")
         if data.get('group') == "student":
             request.session["id"] = data.get('username')
