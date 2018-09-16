@@ -19,7 +19,9 @@ def StudentDashboard(request):
                 username=request.session['id'])).Branch)
         items = inventory.objects.filter(
             item_department=Branch[0].id)
-        return render(request, "inventory/studentdashboard.html")
+
+        return render(request, "inventory/studentdashboard.html",
+                      {'data': items})
     # Issue items
     # if request.method == 'POST':
     #     json_data = json.loads(request.data)
