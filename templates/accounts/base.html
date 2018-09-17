@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <link href="{% static "/css/basestyle.css"%}" rel="stylesheet"/>
+	    <script type="text/javascript" src="{% static "/scripts/basescript.js"%}"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    	<title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+    	{% block navbar %}
+		{% endblock %}
+		<ul id="slide-out" class="side-nav fixed">	
+		    <li><a href="#!"><i class="material-icons">person_outline</i>Profile</a></li>
+		    <hr style="">
+		    <li><a href="#!"><i class="material-icons">folder</i>Inventory</a></li>
+		    <li><a href="#!"><i class="material-icons">folder</i>Issued Items</a></li>
+		    <li><a href="#!"><i class="material-icons">folder</i>Issue History</a></li>
+		</ul>
+		{% block pages %}
+		{% endblock %}
+		
+		<script>
+			function openLab(evt, LabName) {
+			    var i, tabcontent, tablinks;
+			    tabcontent = document.getElementsByClassName("tabcontent");
+			    for (i = 0; i < tabcontent.length; i++) {
+			        tabcontent[i].style.display = "none";
+			    }
+			    tablinks = document.getElementsByClassName("tablinks");
+			    for (i = 0; i < tablinks.length; i++) {
+			        tablinks[i].className = tablinks[i].className.replace(" active", "");
+			    }
+			    document.getElementById(LabName).style.display = "block";
+			    evt.currentTarget.className += " active";
+			}
+			document.getElementById("defaultOpen").click();
+		</script>
+    </body>
+</html>
