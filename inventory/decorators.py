@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 
 def student_only(function):
+    """Decorator to check if loggedin person is a student """
+
     def wrap(request, *args, **kwargs):
 
         group = request.session["group"]
@@ -18,6 +20,7 @@ def student_only(function):
 
 
 def faculty_only(function):
+    """Decorator to check if loggedin person is a faculty """
 
     def wrap(request, *args, **kwargs):
 
