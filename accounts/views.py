@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views import View
 from .models import StudentProfile, FacultyProfile
 import requests
+from decouple import config
 # from inventory.decorators import student_only, faculty_only
 
 
@@ -26,8 +27,7 @@ class Loginview(View):
             'password': password
         }
         response = requests.post(
-            'http://yashasingh.tech:8085/api/profiles/login/',
-            # LoginAPI,
+            config('LOGIN_API'),
             data=data)
         data = response.json()
         if data.get('non_field_errors') is not None:

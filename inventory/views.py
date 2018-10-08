@@ -21,9 +21,7 @@ def StudentDashboard(request):
 
     return render(request,
                   "inventory/studentdashboarddemo.html",
-                  {
-                      'data': items
-                  }
+                  {'data': items}
                   )
 
     # # Issue request
@@ -56,9 +54,7 @@ def FacultyDashboard(request):
         data = Issue_list.objects.filter(faculty=profile)
         return render(request,
                       "inventory/facultydashboard.html",
-                      {
-                          'data': data
-                      }
+                      {'data': data}
                       )
 
 
