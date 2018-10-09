@@ -1,298 +1,152 @@
-{% extends 'accounts/base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
-    	<link href="{% static 'css/studentstyle.css' %}" rel="stylesheet"/>
-	    <script type="text/javascript" src="{% static "/scripts/studentscript.css"%}"></script>
-    	<title>{% block title %} Student {% endblock %}</title>
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <script src="js/jquery-3.1.1.min.js"></script>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	    <link href="{% static '/css/studentdashboardstyle.css'%}" rel="stylesheet"/>
+	    <script type="text/javascript" src="{% static '/script/studentdashboardscript.js' %}"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    	<title>Dashboard</title>
     </head>
+
     <body>
     	{% block navbar %}
 		<div class="wrapper">
 		    <div class="">
 		        <!-- Dropdown Structure -->
-		        <nav class="grey lighten-4" role="navigation">
+		        <nav class=" light-blue" role="navigation">
 		            <div class="nav-wrapper container">
-		                <a href="#!" class="brand-logo black-text">Inventory Order</a>
+		                <a href="#!" class="brand-logo white-text" style="margin-left: 0px;">Inventory Order</a>
 		            </div>
 		        </nav>
 		    </div>
 		</div>
 		{% endblock %}
-		
-		{% block pages %}
-		<div id="lbox">
+		<div id="outer">
+				<form class="col s12" method="post" id="form_id">
+					<div id="lbox">
+						<div id="lbox-up">
+							<div class="row">
+								<div class="input-field col s10">
+									<i class="material-icons prefix">title</i>
+										<input id="title" type="text" name="title" class="validate">
+										<label for="title">Title</label>
+							    </div>
+							</div>
+							<div class="row">
+								<div class="input-field col s10">
+										<i class="material-icons prefix">message</i>
+										<textarea id="detail" name="detail" class="materialize-textarea"></textarea>
+										<label for="detail">Description</label>
+								</div>
+							</div>
+						</div>
+						<div id="lbox-down">
+							<div id="box">
+								<table>
+							        <thead>
+							          <tr>
+							              <th>Item Name</th>
+							              <th>Item Qty.</th>
+							          </tr>
+							        </thead>
+							        <tbody id="item_cart">
+							          </tr>
+							        </tbody>
+							    </table>
+							</div>
+							<button class="btn light-blue waves-effect waves-light right z-depth-3" type="submit" name="action" onclick="submitform()" style="margin-top: 25px;">Submit <i class="material-icons right">send</i></button>			
+						</div>
 
-			<form >
-				<div class="input-field">
-				  	<i class="material-icons">search</i>
-				      	<input id="searchbar" class="header-search-input z-depth-2" name="search" placeholder="Search" type="search" required >
-				        	<i class="material-icons" style="margin-top: 3%; margin-right: -10px;">close</i>
-				</div>
-			</form>
-				<div class="tab2">
-				  <button class="tablinks" onclick="openLab(event, 'chemistry')" id="defaultOpen">Chemistry Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'eyantra')">E-Yantra Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'electrical')">Electrical Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'mechanics')">Mechanics Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'networks')">Networks Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'physics')">Physics Lab</button>
-				  <button class="tablinks" onclick="openLab(event, 'simulation')">Simulation Lab</button>
-				</div>
+					</div>
+
+				
+
+					<div id="rbox" class="grey lighten-2">
+						<div id="rbox-up">
+								<div class="row">
+									<div class="input-field col s4">
+										<select onchange="formSelect(this)">
+											<option value="" disabled selected>Choose your option</option>
+											<option value="CS">CS</option>
+											<option value="EC">EC</option>
+											<option value="EE">EE</option>
+										</select>
+										<label>Select Department</label>
+									</div>
+									<div class="col s8">
+										<div id="p1">
+										</div>
+									</div>
+									
+								</div>
+								
+						</div>
+						<div id="items" class="tabcontent">
+							
+							<div id="inner">
+								<h4 style="padding-left: 5%;">Inventory Order Information</h4>
+								<table class="striped">
+								        <thead>
+								          <tr>
+								              <th>Item</th>
+								              <th>Quantity</th>
+								          </tr>
+								        </thead>
+
+								        <tbody id="itemList">
+
+								        </tbody>
+								</table>
+							</div>
+
+						</div>
+						</form>	
+					</div>
 		</div>
-
-
-
-
-		<div id="rbox" class="grey lighten-2">
-
-			<div id="chemistry" class="tabcontent">
-				<div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="chemistrylab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM1_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM1_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM1_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-				    </form>
-				</div>
-			</div>
-			<div id="eyantra" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="eyantralab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM2_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM2_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM2_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>
-			<div id="electrical" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="electricallab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM3_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM3_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM3_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>
-			<div id="mechanics" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="mechanicslab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM4_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM4_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM4_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>
-			<div id="networks" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="networkslab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM5_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM5_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM5_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>
-			<div id="physics" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="physicslab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM6_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM6_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM6_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>
-			<div id="simulation" class="tabcontent">
-			  <div id="inner">
-					<h4>Inventory Order Information</h4>
-					<form id="simulationlab">
-					<table>
-					        <thead>
-					          <tr>
-					              <th>Item</th>
-					              <th>Item Code</th>
-					              <th>Quantity</th>
-					          </tr>
-					        </thead>
-
-					        <tbody>
-					          <tr>
-					            <td>Item One</td>
-					            <td>ITEM7_C3PO</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Two</td>
-					            <td>ITEM7_R2D2</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-					          <tr>
-					            <td>Item Three</td>
-					            <td>ITEM7_DNOT</td>
-					            <td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
-					          </tr>
-
-					        </tbody>
-					</table>
-					</form>
-				</div>
-			</div>	
-		</div>
-		{% endblock %}
-    </body>
+		<script>
+			function formSelect(curState)
+	        {   
+	            var result="<div class='input-field col s6'><select onchange='addItem(this)'><option>--Select Lab--</option>";
+	            if(curState.value.match("CS"))
+	            {
+	                var cslist=["Lab1","Lab2","Lab3","Lab4","Lab5"];
+	                for(i=0;i<cslist.length;i++)
+	                {
+	                    result+="<option>"+cslist[i]+"</option>"
+	                }
+	                result+="</select><label>Select Lab</label></div>";
+	                document.getElementById("p1").innerHTML=result;
+	                $('select').material_select();
+	            }
+	            if(curState.value.match("EC"))
+	            {
+	                var eclist=["Eyantra","EC1","EC2"];
+	                for(i=0;i<eclist.length;i++)
+	                {
+	                    result+="<option>"+eclist[i]+"</option>"
+	                }
+	                result+="</select><label>Select Lab</label></div>";
+	                document.getElementById("p1").innerHTML=result;
+	                $('select').material_select();
+	            }
+	            if(curState.value.match("EE"))
+	            {
+	                var eelist=["EE1","EE2","EE3"];
+	                for(i=0;i<eelist.length;i++)
+	                {
+	                    result+="<option>"+eelist[i]+"</option>"
+	                }
+	                result+="</select><label>Select Lab</label></div>";
+	                document.getElementById("p1").innerHTML=result;
+	                $('select').material_select();
+	            }
+	        }
+	        
+		</script>
+	    	
+	</body>
 </html>

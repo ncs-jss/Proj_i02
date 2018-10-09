@@ -3,9 +3,26 @@ nav
   height: 7vh;
   line-height: 7vh;
 }
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+@-moz-document url-prefix() { .container { overflow: hidden; } }
+.container
+{
+  width: 100%;
+  margin-left: 4%;
+}
 a
 {
   color: black;
+}
+#outer
+{
+  height: 93vh;
 }
 .minus-btn
 {
@@ -14,10 +31,12 @@ a
   padding: 0px;
   font-size: 15px;
 }
+
 .minus-btn .material-icons
 {
   font-size: 18px;
 }
+
 .plus-btn
 {
   height: 25px;
@@ -25,72 +44,102 @@ a
   padding: 0px;
   font-size: 15px;
 }
+
 .plus-btn .material-icons
 {
   font-size: 18px;
 }
+
 table tr td
 {
-  width: 35%;
+  width: 45%;
 }
 
-table tr td:nth-child(3) #quantity
+table tr td:nth-child(2) #quantity
 {
   width: 12%;
-  padding: 5%;
-  margin-left: 2%;
+  padding: 0%;
+  margin: 0%;
+  margin-left: 8%;
   border: 0px;
+}
+th
+{
+  padding-left: 5%;
+  margin-left: 10%;
+}
+td
+{
+  padding: 0%;
+  padding-left: 5%;
 }
 #lbox
 {
-  width: 20%;
-  height: auto;
-  min-height: 500px;
-  margin-left: 15%;
+  width: 25%;
+  height: 93vh;
   float: left;
+  overflow-y: scroll;
+  background-color: #FAFAFA;
 }
+
+#lbox .row
+{
+  margin: 0%;
+} 
+.row .col.s10
+{
+  margin-left: 8%;
+  margin-top: 8%;
+  min-height: 6vh;
+}
+
+#lbox-up
+{
+  width: 100%;
+  min-height: 33vh;
+  margin: 0vh;
+}
+
+#lbox-down
+{
+  padding: 5%;
+  margin: 0vh;
+  width: 100%;
+  min-height: 57vh;
+}
+
+#box
+{
+  height: 41vh;
+  padding: 1vh;
+  background-color: white;
+  border: 1px solid #9E9E9E;
+}
+
 #rbox
 {
-  width: 65%;
+  width: 75%;
   height: 93vh;
   float: right;
   padding: 2%;
 }
-#lbox form .input-field
+#rbox-up
 {
-  height: 10%;
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 10%;
-  border: 1px solid black;
-  border-radius: 20px 20px 20px 20px;
-}
-#lbox form .input-field .material-icons
-{
-  margin-top: 5px; margin-left: 10px;
-}
-#searchbar
-{
-  height: 30%;
-  width: 65%;
-  margin: -14% 0px 0 40px;
-  border-bottom: 0px;
-  padding: 3%;
+  width: 100%;
+  height: 12vh;
+  margin-left: 2%;
 }
 #inner
 {
-  width: 100%;
-  height: 75vh;
+  width: 90%;
+  height: 65vh;
   border: 1px solid black;
   background-color: white;
-  padding: 3%;
   overflow-y: auto;
+  margin-left: 3%;
 }
 
-nav .nav-wrapper
-{
-  margin-left: 20%;
-}
+
 hr { 
     display: block;
     margin-left: auto;
@@ -99,119 +148,43 @@ hr {
     border-width: 0.5px;
     width: 150px;
 }
-.side-nav
-{
-  width: 15%;
-}
+
 nav .brand-logo
 {
   font-size: 24px;
 }
-.side-nav li>a>i.material-icons
+.input-field label
 {
-  margin: 0 16px 0 0;
+  color: #333333;
 }
-#lablist li a
-{
-  color: black;
+.input-field .prefix.active {
+    color: #222222;
 }
-#lablist li
+
+.input-field .active {
+  color: green;
+}
+
+textarea.materialize-textarea { resize: none; }
+input[type=text]:not(.browser-default):focus:not([readonly])+label
 {
-  padding: 5%;
-  margin-left: 25%;
+  color: red;
 }
 
 
-.tab2 {
-    float: left;
-    width: 100%;
-    height: 100px;
-    margin-top: 5%;
+textarea.materialize-textarea:focus:not([readonly])+label
+{
+  color: red;
 }
 
-.tab2 button {
-    display: block;
-    background-color: inherit;
-    color: black;
-    padding: 22px 16px;
-    width: 100%;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 17px;
-}
 
-.tab2 button:hover {
-    background-color: #ddd;
-}
-
-.tab2 button.active {
-    background-color: #ccc;
-}
-
-.tabcontent {
-    width: 100%;
-    border-left: none;
-}
-.tab3
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
 {
-  float: left;
-  display: block;
-  color: rgba(0,0,0,0.87);
-  width: 100%;
-  height: 48px;
-  line-height: 48px;
-  font-weight: 500;
- 
+  box-shadow: 0 1px 0 red;
+  border-bottom: 1px solid red;
 }
-.tab3 button {
-    display: block;
-    background-color: inherit;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    overflow-y: auto;
-    z-index: 999;
-    padding: 0 32px;
-    font-size: 14px;
-}
-.tab3 button .material-icons
+.materialize-textarea
 {
-  float: left;
-  height: 48px;
-  line-height: 48px;
-  width: 24px;
-  color: rgba(0,0,0,0.54);
-  margin: 0 16px 0 0;
-}
-
-.tabcontent2
-{
-  height: 100%;
-
-}
-#profile
-{
-  height: 93vh;
-  width: auto;
-  background-color: #111111
-}
-#inventory
-{
-  height: 93vh;
-  width: auto;
-}
-#issueditems
-{
-  height: 93vh;
-  width: auto;
-  background-color: #333333;
-}
-#issuehistory
-{
-  height: 93vh;
-  width: auto;
-  background-color: #555555;
+  height: 100px;
+  resize: none;
 }
