@@ -1,0 +1,25 @@
+<h4>Inventory Order Information</h4>
+						<form id="chemistrylab">
+							<table>
+								<thead>
+									<tr>
+										<th>Item</th>
+										<th>Item Code</th>
+										<th>Quantity</th>
+									</tr>
+								</thead>
+								<tbody>
+								{%for i in data%}
+									<tr>
+										<td>{{i.item}}</td>
+										<td>{{i.}}</td>
+										<td><button class="minus-btn" type="button" name="button"><i class="material-icons">remove</i></button> <input id="quantity" type="text" name="name" value="0"> <button class="plus-btn" type="button" name="button"><i class="material-icons">add</i></button></td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</form>
+					</div>
+				</div>
+
+				

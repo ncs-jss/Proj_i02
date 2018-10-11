@@ -1,9 +1,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from accounts.models import StudentProfile, FacultyProfile
+import jsonfield
 
 
 # Create your models here.
 class departments(models.Model):
+    '''
+    It stores the information about the Department
+    '''
     # List of branches
     CSE = 'CSE'
     IT = 'IT'
@@ -37,6 +42,7 @@ class departments(models.Model):
 class storage_locations(models.Model):
     location = models.CharField(max_length=30)
     department = models.ForeignKey(departments, on_delete=models.CASCADE)
+    incharge = models.ForeignKey(FacultyProfile, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _("Location")
@@ -62,5 +68,18 @@ class count_division(models.Model):
     class Meta:
         verbose_name = _("DividedCount")
 
-    # def __str__(self):
-    #     return self.item_name
+    def __str__(self):
+        return self.item_name
+
+
+class Issue_list(models.Model):
+    item_list = jsonfield.JSONField()
+    status = models.BooleanField(default=False)
+    student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    faculty = models.ForeignKey(FacultyProfile, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("IssueList")
+
+    def __str__(self):
+        return self.item_list

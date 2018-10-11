@@ -54,7 +54,6 @@ class StudentProfile(models.Model):
     email = models.CharField(max_length=60, blank=True, null=True)
     phone = models.CharField(
         validators=[PHONE_VALIDATOR], max_length=15, blank=True)
-
     created = models.DateTimeField("Created", null=True, auto_now_add=True)
 
     def __str__(self):
