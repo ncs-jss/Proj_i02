@@ -21,7 +21,10 @@ from . import settings
 
 
 urlpatterns = [
-    url(r'^login/', include("accounts.urls")),
+
+    url(r'^', include("accounts.urls")),
+    url(r'^dashboard/', include("inventory.urls")),
+    # url(r'^login/', include("accounts.urls")),
     url(r'^admin/', admin.site.urls),
 ]
 
