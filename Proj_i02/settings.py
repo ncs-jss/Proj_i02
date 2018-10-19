@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_spaghetti',
     'accounts',
     'inventory',
+    'import_export',
 ]
 
 MIDDLEWARE = [
